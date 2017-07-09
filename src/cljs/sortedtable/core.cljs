@@ -22,8 +22,7 @@
   [:thead
    [:tr
     (for [f fields]
-      [:th {:key (str "th-" f) :onClick #(handleClick % f)} f]
-      )
+      [:th {:key (str "th-" f) :onClick #(handleClick % f)} f])
     ]]
   )
 
@@ -34,15 +33,13 @@
      [:tr
       (for [f c]
         ^{:key (str "td-" f)}
-        [:td f]
-        )
-      ]
-     )
-   ]
-  )
+        [:td f])
+      ])
+   ])
 
 (defn sortFunction [r f]
-  (if r (reverse (sort-by #(% f) tableContent)) (sort-by #(% f) tableContent))
+  (let [sorted (sort-by #(% f) tableContent)]
+    (if r (reverse sorted) sorted))
   )
 
 (defn table []
